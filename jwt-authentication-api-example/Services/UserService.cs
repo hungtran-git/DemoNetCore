@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -62,6 +63,8 @@ namespace jwt_authentication_api_example.Services
 
         private string generateJwtToken(User user)
         {
+            /*
+            // HmacSha256Signature
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
@@ -73,6 +76,56 @@ namespace jwt_authentication_api_example.Services
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+            */
+
+            /*
+             
+            // RsaSha256
+            var privateKey = _appSettings.RsaPrivateKey.ToByteArray();
+            using ECDsa ecdsa = ECDsa.Create();
+            ecdsa.ImportECPrivateKey(privateKey, out _);
+
+            var signingCredentials = new SigningCredentials(new ECDsaSecurityKey(ecdsa), SecurityAlgorithms.Ecd)
+            {
+                CryptoProviderFactory = new CryptoProviderFactory { CacheSignatureProviders = false }
+            };
+
+            var now = DateTime.Now;
+            var unixTimeSeconds = new DateTimeOffset(now).ToUnixTimeSeconds();
+
+            var jwt = new JwtSecurityToken(
+                    claims: new Claim[] {
+                        new Claim("id", user.Id.ToString())
+                    },
+                    notBefore: now,
+                    expires: now.AddMinutes(30),
+                    signingCredentials: signingCredentials
+                );
+            return new JwtSecurityTokenHandler().WriteToken(jwt);
+             */
+
+            // PCDsa
+            var privateKey = _appSettings.ECDsaPrivateKey.ToByteArray();
+            ECDsa ecdsa = new ECDsaCng(CngKey.Import(privateKey, CngKeyBlobFormat.EccPrivateBlob))
+            {
+                HashAlgorithm = CngAlgorithm.ECDsaP256
+            };
+
+            var signingCredentials = new SigningCredentials(
+                    new ECDsaSecurityKey(ecdsa), SecurityAlgorithms.EcdsaSha256);
+
+            var now = DateTime.Now;
+            var unixTimeSeconds = new DateTimeOffset(now).ToUnixTimeSeconds();
+
+            var jwt = new JwtSecurityToken(
+                    claims: new Claim[] {
+                        new Claim("id", user.Id.ToString())
+                    },
+                    notBefore: now,
+                    expires: now.AddMinutes(30),
+                    signingCredentials: signingCredentials
+                );
+            return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
     }
 }
