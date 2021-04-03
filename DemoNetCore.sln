@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jwt-authentication-api-example", "jwt-authentication-api-example\jwt-authentication-api-example.csproj", "{0FE4CE0D-9CAC-4D61-86F5-06D86C7339EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jwt-authentication-api-example", "jwt-authentication-api-example\jwt-authentication-api-example.csproj", "{0FE4CE0D-9CAC-4D61-86F5-06D86C7339EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECDsaDemo", "ECDsaDemo\ECDsaDemo.csproj", "{DB81B1BD-4028-427A-8F40-0A97014CDAC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECDsaDemo", "ECDsaDemo\ECDsaDemo.csproj", "{DB81B1BD-4028-427A-8F40-0A97014CDAC6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "how-to-compress-and-extract-files", "how-to-compress-and-extract-files\how-to-compress-and-extract-files.csproj", "{8995FEB4-70EF-42E7-A383-DD7E0612AEF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCoreGenerator", "EntityFrameworkCoreGenerator\EntityFrameworkCoreGenerator.csproj", "{EE2B2B85-075A-440A-A7F8-307CAAF76EF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{DB81B1BD-4028-427A-8F40-0A97014CDAC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB81B1BD-4028-427A-8F40-0A97014CDAC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB81B1BD-4028-427A-8F40-0A97014CDAC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8995FEB4-70EF-42E7-A383-DD7E0612AEF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8995FEB4-70EF-42E7-A383-DD7E0612AEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8995FEB4-70EF-42E7-A383-DD7E0612AEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8995FEB4-70EF-42E7-A383-DD7E0612AEF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE2B2B85-075A-440A-A7F8-307CAAF76EF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE2B2B85-075A-440A-A7F8-307CAAF76EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE2B2B85-075A-440A-A7F8-307CAAF76EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE2B2B85-075A-440A-A7F8-307CAAF76EF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
