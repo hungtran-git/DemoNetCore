@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ShoesHuntBackup.Data.Mapping
 {
-    public partial class DllMap
-        : IEntityTypeConfiguration<ShoesHuntBackup.Data.Entities.Dll>
+    public partial class DllFileMap
+        : IEntityTypeConfiguration<ShoesHuntBackup.Data.Entities.DllFile>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<ShoesHuntBackup.Data.Entities.Dll> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<ShoesHuntBackup.Data.Entities.DllFile> builder)
         {
             #region Generated Configure
             // table
-            builder.ToTable("Dll");
+            builder.ToTable("DllFile");
 
             // key
             builder.HasKey(t => t.Id);
@@ -25,6 +25,10 @@ namespace ShoesHuntBackup.Data.Mapping
 
             builder.Property(t => t.DllName)
                 .HasColumnName("DllName")
+                .HasColumnType("TEXT");
+
+            builder.Property(t => t.DllContentType)
+                .HasColumnName("DllContentType")
                 .HasColumnType("TEXT");
 
             builder.Property(t => t.DllData)
@@ -47,13 +51,14 @@ namespace ShoesHuntBackup.Data.Mapping
         public struct Table
         {
             public const string Schema = "";
-            public const string Name = "Dll";
+            public const string Name = "DllFile";
         }
 
         public struct Columns
         {
             public const string Id = "Id";
             public const string DllName = "DllName";
+            public const string DllContentType = "DllContentType";
             public const string DllData = "DllData";
             public const string CreatedDate = "CreatedDate";
             public const string UpdatedDate = "UpdatedDate";

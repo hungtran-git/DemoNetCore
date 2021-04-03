@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ShoesHuntBackup.Data.Entities
 {
-    public partial class Dll
+    public partial class DllFile
     {
-        public Dll()
+        public DllFile()
         {
             #region Generated Constructor
             #endregion
@@ -15,6 +15,8 @@ namespace ShoesHuntBackup.Data.Entities
         public long Id { get; set; }
 
         public string DllName { get; set; }
+
+        public string DllContentType { get; set; }
 
         public Byte[] DllData { get; set; }
 

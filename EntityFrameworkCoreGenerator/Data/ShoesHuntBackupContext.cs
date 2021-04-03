@@ -12,14 +12,14 @@ namespace ShoesHuntBackup.Data
         }
 
         #region Generated Properties
-        public virtual DbSet<ShoesHuntBackup.Data.Entities.Dll> Dlls { get; set; }
+        public virtual DbSet<ShoesHuntBackup.Data.Entities.DllFile> DllFiles { get; set; }
 
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Generated Configuration
-            modelBuilder.ApplyConfiguration(new ShoesHuntBackup.Data.Mapping.DllMap());
+            modelBuilder.ApplyConfiguration(new ShoesHuntBackup.Data.Mapping.DllFileMap());
             #endregion
         }
     }
