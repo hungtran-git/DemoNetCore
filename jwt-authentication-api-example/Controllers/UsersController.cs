@@ -28,7 +28,7 @@ namespace jwt_authentication_api_example.Controllers
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             var users = _userService.GetAll();

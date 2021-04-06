@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECDsaDemo", "ECDsaDemo\ECDs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "how-to-compress-and-extract-files", "how-to-compress-and-extract-files\how-to-compress-and-extract-files.csproj", "{8995FEB4-70EF-42E7-A383-DD7E0612AEF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCoreGenerator", "EntityFrameworkCoreGenerator\EntityFrameworkCoreGenerator.csproj", "{EE2B2B85-075A-440A-A7F8-307CAAF76EF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkCoreGenerator", "EntityFrameworkCoreGenerator\EntityFrameworkCoreGenerator.csproj", "{EE2B2B85-075A-440A-A7F8-307CAAF76EF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptography", "Cryptography\Cryptography.csproj", "{F49033E5-401B-4292-B176-8EEE5DC7CC40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{EE2B2B85-075A-440A-A7F8-307CAAF76EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE2B2B85-075A-440A-A7F8-307CAAF76EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE2B2B85-075A-440A-A7F8-307CAAF76EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F49033E5-401B-4292-B176-8EEE5DC7CC40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F49033E5-401B-4292-B176-8EEE5DC7CC40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F49033E5-401B-4292-B176-8EEE5DC7CC40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F49033E5-401B-4292-B176-8EEE5DC7CC40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

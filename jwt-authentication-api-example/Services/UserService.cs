@@ -104,7 +104,7 @@ namespace jwt_authentication_api_example.Services
             return new JwtSecurityTokenHandler().WriteToken(jwt);
              */
 
-            // PCDsa
+            // ECDsa
             var privateKey = _appSettings.ECDsaPrivateKey.ToByteArray();
             ECDsa ecdsa = new ECDsaCng(CngKey.Import(privateKey, CngKeyBlobFormat.EccPrivateBlob))
             {
