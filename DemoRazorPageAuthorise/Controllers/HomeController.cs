@@ -1,13 +1,26 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using DemoRazorPageAuthorise.Data;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace DemoRazorPageAuthorise.Controllers
 {
     public class HomeController:Controller
     {
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public readonly SignInManager<IdentityUser> _signInManager;
+
+        public HomeController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
         public IActionResult Index()
         {
             return View();
@@ -17,28 +30,55 @@ namespace DemoRazorPageAuthorise.Controllers
         {
             return View();
         }
-
-        public IActionResult Authenticate()
+        [HttpGet]
+        public IActionResult Login()
         {
-            var grandmaClaims = new List<Claim>
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(string username, string password)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            
+            if (user!=null)
             {
-                new Claim(ClaimTypes.Name, "Bob"),
-                new Claim(ClaimTypes.Email, "Bob@gmail.com"),
-                new Claim("Grandma.Says", "Very nice boi."),
-            };
-
-            var licenseClaims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, "Bob k foo"),
-                new Claim("DrivingLicense", "A+"),
-            };
-            var grandmaIdentity = new ClaimsIdentity(grandmaClaims, "Grandma Identity");
-            var licenseIdentity = new ClaimsIdentity(licenseClaims, "Goverment");
-
-            var userPrincipal = new ClaimsPrincipal(new[] { grandmaIdentity, licenseIdentity });
-            HttpContext.SignInAsync(userPrincipal);
-
+                // sign-in
+                var signInResult = await _signInManager.PasswordSignInAsync(user, password, false, false);
+                if (signInResult.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Register(string username, string password)
+        {
+            var user = new IdentityUser{
+                UserName = username,
+                Email = "",
+                //PasswordHash = "customer hash"
+            };
+            var result = await _userManager.CreateAsync(user, password);
+            if (result.Succeeded)
+            {
+                // sign-in
+                var signInResult = await _signInManager.PasswordSignInAsync(user, password, false, false);
+                if (signInResult.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Index");
+        }
+        public async Task LogOut()
+        {
+            await _signInManager.SignOutAsync();
         }
     }
 }
