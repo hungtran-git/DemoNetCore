@@ -9,31 +9,27 @@ namespace Cryptography
     {
         public ECParameters publicKey { get; set; }
         public ECParameters privateKey { get; set; }
-        private HashAlgorithmName _hashAlgorithmName;
+        private CngAlgorithm _cngAlgorithm;
 
 
         public byte[] publicKey_byte { get; set; }
         public byte[] privateKey_byte { get; set; }
 
-        public string publicKey_string { get; set; }
-        public string privateKey_string { get; set; }
+        public string publicKey_string { get; set; } = "RUNTNUIAAAABUBbrh7xrHECobnlW4pzzI2geVYdzMS/4ub65Ruh3bC7cQbVqq9EPIQ1D4UcRGLqoc7M0NIHTDsKoUZKZvaHrqeMACBEc6pTWDPKckVlD4F/MrHonG6evt9YU2dWWw9R3pDmbFeSMuAJLx+5cGb32BhbBdX0uTzuzqEexbXszLReRBr4=";
+        public string privateKey_string { get; set; } = "RUNTNkIAAAABUBbrh7xrHECobnlW4pzzI2geVYdzMS/4ub65Ruh3bC7cQbVqq9EPIQ1D4UcRGLqoc7M0NIHTDsKoUZKZvaHrqeMACBEc6pTWDPKckVlD4F/MrHonG6evt9YU2dWWw9R3pDmbFeSMuAJLx+5cGb32BhbBdX0uTzuzqEexbXszLReRBr4B4UCYhKol7/p1cC9sHkn02L+IbtZmhGZn4eVWu+S1qaS5TeMOu739s36xB0LAe6j8iivns0ks1U78cIEyBfY1qEI=";
 
         public ECDsaDigialSignature()
         {
-            _hashAlgorithmName = HashAlgorithmName.SHA256;
+            _cngAlgorithm = CngAlgorithm.Sha256;
         }
 
         public void AssignNewKey()
         {
             using (ECDsaCng dsa = new ECDsaCng())
             {
-                dsa.HashAlgorithm = CngAlgorithm.Sha256;
+                dsa.HashAlgorithm = _cngAlgorithm;
                 publicKey_byte = dsa.Key.Export(CngKeyBlobFormat.EccPublicBlob);
                 privateKey_byte = dsa.Key.Export(CngKeyBlobFormat.EccPrivateBlob);
-
-                publicKey_string = Convert.ToBase64String(publicKey_byte);
-                privateKey_string = Convert.ToBase64String(privateKey_byte);
-
             }
         }
 
@@ -41,16 +37,17 @@ namespace Cryptography
         {
             using (ECDsaCng dsa = new ECDsaCng(CngKey.Import(privateKey_byte, CngKeyBlobFormat.EccPrivateBlob)))
             {
-                dsa.HashAlgorithm = CngAlgorithm.Sha256;
+                dsa.HashAlgorithm = _cngAlgorithm;
                 return dsa.SignData(hashOfDataToSign);
             }
         }
 
         public bool VerifySignature(byte[] hashOfDataToSign, byte[] signature)
         {
-            using (ECDsaCng ecsdKey = new ECDsaCng(CngKey.Import(publicKey_byte, CngKeyBlobFormat.EccPublicBlob)))
+            using (ECDsaCng dsa = new ECDsaCng(CngKey.Import(publicKey_byte, CngKeyBlobFormat.EccPublicBlob)))
             {
-                return ecsdKey.VerifyData(hashOfDataToSign, signature);
+                dsa.HashAlgorithm = _cngAlgorithm;
+                return dsa.VerifyData(hashOfDataToSign, signature);
             }
         }
 
@@ -63,7 +60,7 @@ namespace Cryptography
             {
                 hashedDocument = sha256.ComputeHash(document);
             }
-
+            
             var digitalSignature = new ECDsaDigialSignature();
             digitalSignature.AssignNewKey();
 

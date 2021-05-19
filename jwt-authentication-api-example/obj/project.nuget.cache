@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6L/P+nx7BM307tBcS57azlYQ4IqlIyAHp43nTwVYMuEPfewIyT8eSAOLHOjZavQZK1I8FjaAtrxGi9pQnN+AJQ==",
+  "dgSpecHash": "2LUnvt4Fln2vzhT58IP7sSBeMAJPei3hDT856xbSw4eTPJE1krCIv1dAp+ElQU0BJatEibl3KCgxylsSWr8bLA==",
   "success": true,
   "projectFilePath": "D:\\HungTran\\2-project\\1-net-core\\DemoNetCore\\jwt-authentication-api-example\\jwt-authentication-api-example.csproj",
   "expectedPackageFiles": [

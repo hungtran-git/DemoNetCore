@@ -1,0 +1,164 @@
+﻿@page "/";
+@using Syncfusion.Blazor.Inputs;
+
+<div class="container-fluid" style="min-width: 700px;">
+    <div class="row">
+        <div class="col-5">
+            <div class="m-auto" style="max-width: 300px">
+                <div class="row">
+                    <div class="col-6 p-4">
+                        <img src="https://picsum.photos/200/200" class="rounded w-100" alt="...">
+                    </div>
+                    <div class="col-6 p-4">
+                        <img src="https://picsum.photos/200/200" class="rounded w-100" alt="...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 p-4">
+                        <img src="https://picsum.photos/200/200" class="rounded w-100" alt="...">
+                    </div>
+                    <div class="col-6 p-4">
+                        <img src="https://picsum.photos/200/200" class="rounded w-100" alt="...">
+                    </div>
+                </div>
+            </div>
+            <EditForm Model="@employeeDetails" OnValidSubmit="@Submit">
+                <DataAnnotationsValidator />
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label p-0 text-uppercase">site:</label>
+                            <div class="col-sm-9 p-0">
+                                <SfTextBox @bind-Value="@employeeDetails.FirstName"></SfTextBox>
+                                <ValidationMessage For="@(() => employeeDetails.FirstName)"></ValidationMessage>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label p-0 text-uppercase">sku:</label>
+                            <div class="col-sm-9 p-0">
+                                <SfTextBox @bind-Value="@employeeDetails.FirstName"></SfTextBox>
+                                <ValidationMessage For="@(() => employeeDetails.FirstName)"></ValidationMessage>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <SfTextBox @bind-Value="@employeeDetails.FirstName"></SfTextBox>
+                                <ValidationMessage For="@(() => employeeDetails.FirstName)"></ValidationMessage>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-primary text-uppercase">get aval size</button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label p-0 text-uppercase">random size range:</label>
+                            <div class="col-sm-8 p-0">
+                                <SfTextBox @bind-Value="@employeeDetails.FirstName"></SfTextBox>
+                                <ValidationMessage For="@(() => employeeDetails.FirstName)"></ValidationMessage>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label p-0 text-uppercase">task proxies:</label>
+                            <div class="col-sm-9 p-0">
+                                <SfTextBox @bind-Value="@employeeDetails.FirstName"></SfTextBox>
+                                <ValidationMessage For="@(() => employeeDetails.FirstName)"></ValidationMessage>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label p-0 text-uppercase">profiles:</label>
+                            <div class="col-sm-9 p-0">
+                                <SfTextBox @bind-Value="@employeeDetails.FirstName"></SfTextBox>
+                                <ValidationMessage For="@(() => employeeDetails.FirstName)"></ValidationMessage>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label p-0 text-uppercase">schedule:</label>
+                            <div class="col-sm-9 p-0">
+                                <SfTextBox @bind-Value="@employeeDetails.FirstName"></SfTextBox>
+                                <ValidationMessage For="@(() => employeeDetails.FirstName)"></ValidationMessage>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mt-3 text-center">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </EditForm>
+        </div>
+        <div class="col-7">
+            <div>
+                <div style="height:300px" class="row justify-content-between align-items-center">
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary">Primary</button>
+                        <button type="button" class="btn btn-primary">Primary</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary">Primary</button>
+                        <button type="button" class="btn btn-primary">Primary</button>
+                        <button type="button" class="btn btn-primary">Primary</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>twitter</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@code{
+
+    public EmployeeDetails employeeDetails = null;
+
+    public void Submit()
+    {
+
+        throw new NotImplementedException();
+    }
+
+    protected override void OnInitialized()
+    {
+        employeeDetails = new EmployeeDetails();
+    }
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+</style>
