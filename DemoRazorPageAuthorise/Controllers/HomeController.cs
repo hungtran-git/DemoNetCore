@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DemoRazorPageAuthorise.Controllers
@@ -46,6 +48,7 @@ namespace DemoRazorPageAuthorise.Controllers
                 var signInResult = await _signInManager.PasswordSignInAsync(user, password, false, false);
                 if (signInResult.Succeeded)
                 {
+                    Response.Cookies.Append("UserData", Convert.ToBase64String(Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(user)))); 
                     return RedirectToAction("Index");
                 }
             }

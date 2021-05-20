@@ -36,7 +36,10 @@ namespace DemoRazorPageAuthorise
                 config.LoginPath = "/Home/Login";
             });
 
-            services.AddRazorPages();
+            services.AddRazorPages()
+                .AddRazorPagesOptions(config=> {
+                    config.Conventions.AuthorizePage("/Razor/Secured");
+                });
 
             /*
                          services.AddAuthentication("CookieAuth")
@@ -71,6 +74,7 @@ namespace DemoRazorPageAuthorise
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
             });
         }
     }
