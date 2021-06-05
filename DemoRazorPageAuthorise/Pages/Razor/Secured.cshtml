@@ -1,5 +1,9 @@
 ﻿@page
 @model DemoRazorPageAuthorise.Pages.Razor.SecuredModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @{
 }
 <h1>Secured page.</h1>
+<p>Hello @UserManager.GetUserName(User)!</p>  

@@ -62,10 +62,10 @@ namespace DemoRazorPageAuthorise.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(string username, string password)
         {
-            var user = new IdentityUser{
+            var user = new IdentityUser
+            {
                 UserName = username,
                 Email = "",
-                //PasswordHash = "customer hash"
             };
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
